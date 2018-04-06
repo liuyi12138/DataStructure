@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define N 7
+
+int main()
+{
+    printf("please enter the first key!  ");
+    int key,i;
+    scanf("%d",&key);
+    int ring[N]; //创建顺序表
+    for (i=0;i<N;++i)
+    {
+        printf("please enter the %d perple's password!  ",i+1);
+        scanf("%d",&ring[i]);
+    }
+    //读入每个人的密码并存入顺序表中
+
+    int m=0,k=0,count=1; //定义已出列的人数,现在需报数的人,现在的报数
+    while(m<N)
+    {
+        while(1)
+        {
+            k=k%N;
+            if(ring[k]>0) //判断该人是否已出列
+            {
+                if(count == key)
+                {
+                    printf("%d  ",k+1); //输出出列者的序号
+                    key = ring[k];
+                    ring[k] = -1;
+                    count=1;
+                    ++k;
+                    break;
+                }
+                else
+                {
+                    count++;
+                    k++;
+                }
+
+            }
+            else
+                ++k;
+        }
+        m++;
+    }
+    return 1;
+}
+
+
+
+
+
+

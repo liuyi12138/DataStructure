@@ -1,0 +1,185 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node{
+    int data;
+    struct Node *next;
+}LinkedNode,*LinkedList;
+
+void CreateLinkedList(LinkedList *L, int n);
+void GetIntersection(LinkedList *L1,LinkedList *L2,LinkedList *L3);
+void GetUnion(LinkedList *L1,LinkedList *L2,LinkedList *L4);
+void FreeLink(LinkedList *L);
+
+int main()
+{
+    int n1,n2;
+    printf("Now,we will create LinkedList A! please enter the number of LinkedNode you want in A   ");
+    scanf("%d",&n1); //输入链表A中节点的个数
+    LinkedList *Ahead = NULL;
+    printf("please enter the numbers From small to large!\n");
+    CreateLinkedList(&Ahead, n1); //创建链表A
+    printf("Now,we will create LinkedList B! please enter the number of LinkedNode you want in B   ");
+    scanf("%d",&n2); //输入链表B中节点的个数
+    LinkedList *Bhead = NULL;
+    printf("please enter the numbers From small to large!\n");
+    CreateLinkedList(&Bhead, n2); //创建链表B
+    LinkedList *L3 = NULL; //定义新链表L3为AB两链表的交集
+    LinkedList *L4 = NULL; //定义新链表L4为AB两链表的并集
+    printf("A and B have been created now,so we will get the intersection and union of them \n");
+    GetIntersection(&Ahead,&Bhead,&L3); //创建L3并输出其中的元素
+    GetUnion(&Ahead,&Bhead,&L4); //创建L4并输出其中的元素
+    FreeLink(&Ahead);
+    FreeLink(&Bhead);
+    FreeLink(&L3);
+    FreeLink(&L4);
+    return 1;
+
+}
+
+
+void CreateLinkedList(LinkedList *L, int n) //创建新链表
+{
+
+    LinkedNode *now,*p;
+    int i;
+    for(i=1;i<=n;++i)
+    {
+        printf("please enter the %d data  ",i);
+        now=(LinkedNode*)malloc(sizeof(LinkedNode));
+        now->next=NULL;
+        scanf("%d",&now->data);
+        if((*L)==NULL)
+            (*L)=now;
+        else
+            p->next=now;
+        now->next=NULL;
+        p=now;
+    }
+
+    return ;
+}
+
+void GetIntersection(LinkedList *L1,LinkedList *L2,LinkedList *L3) //得到两链表的交集并将数据存入新链表中
+{
+    LinkedNode *p = (*L1);
+    LinkedNode *q = (*L2);
+    LinkedNode *now1,*k;
+    while((p!=NULL)&&(q!=NULL))
+    {
+        if(p->data==q->data)
+        {
+            now1=(LinkedNode*)malloc(sizeof(LinkedNode));
+            now1->data=p->data;
+            now1->next=NULL;
+            if((*L3)==NULL)
+            {
+                (*L3)=now1;
+                k=(*L3);
+            }
+            else
+                k->next=now1;
+            k=now1;
+            p=p->next;
+            q=q->next;
+        }
+        else
+        {
+            if(p->data>q->data)
+                q=q->next;
+            else
+                p=p->next;
+
+        }
+
+    }
+    LinkedNode *k1 = (*L3);
+    printf("the intersection of A B is : ");
+    while(k1!=NULL)
+    {
+        printf("%d ",k1->data);
+        k1=k1->next;
+    }
+    printf("\n");
+    return ;
+}
+
+void GetUnion(LinkedList *L1,LinkedList *L2,LinkedList *L4) //得到两链表的并集并将数据存入新链表中
+{
+    LinkedNode *p = (*L1);
+    LinkedNode *q = (*L2);
+    LinkedNode *now2,*k,*now3;
+    now2=(LinkedNode*)malloc(sizeof(LinkedNode));
+    if(p->data>q->data)
+    {
+        now2->data=q->data;
+        q=q->next;
+    }
+    else
+    {
+        if(p->data<q->data)
+        {
+            now2->data=p->data;
+            p=p->next;
+        }
+        else
+        {
+            now2->data=p->data;
+            p=p->next;
+            q=q->next;
+        }
+    }
+    now2->next=NULL;
+    (*L4)=now2;
+    k=now2;
+    while((p!=NULL)&&(q!=NULL))
+    {
+        now3=(LinkedNode*)malloc(sizeof(LinkedNode));
+        if(p->data>q->data)
+        {
+            now3->data=q->data;
+            k->next=now3;
+            k=now3;
+            q=q->next;
+        }
+        else
+        {
+            if(p->data<q->data)
+            {
+                now3->data=p->data;
+                p=p->next;
+            }
+            else
+            {
+                now3->data=p->data;
+                p=p->next;
+                q=q->next;
+            }
+        }
+        k->next=now3;
+        k=now3;
+    }
+    if(q!=NULL)
+        k->next=q;
+    if(p!=NULL)
+        k->next=p;
+    LinkedNode *k2 = (*L4);
+    printf("the union of A B is : ");
+    while(k2!=NULL)
+    {
+        printf("%d ",k2->data);
+        k2=k2->next;
+    }
+    printf("\n");
+    return ;
+}
+
+void FreeLink(LinkedList *L)
+{
+    LinkedNode *k3 = (*L);
+    while((*L)!=NULL)
+    {
+        LinkedNode *k3 = (*L);
+        (*L)=(*L)->next;
+        free(k3);
+    }
+}

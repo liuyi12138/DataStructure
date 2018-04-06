@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct Node{
+    int data;
+    struct Node *next;
+}InnNode,*Inn;
+
+void CreatInn(Inn *base,Inn *top,int n);  //构建一个栈
+void PullInn(Inn *base,Inn *top,int n);  //输出栈中的数据
+void FreeInn(Inn *base,Inn *top); //释放栈的空间
+
+int main()
+{
+    int n;
+    printf("Please enter a number!  ");
+    scanf("%d",&n);
+    Inn *top = NULL;
+    Inn *base = NULL;
+    CreatInn(&base,&top,n);
+    PullInn(&base,&top,n);
+    FreeInn(&base,&top);
+    return 1;
+}
+
+void CreatInn(Inn *base,Inn *top,int n) //通过构建一种反向链表来实现栈
+{
+    InnNode *now;
+    now=(InnNode*)malloc(sizeof(InnNode)); //为新的节点申请空间
+    now->data=n%2; //为新节点赋值
+    n=n/2;
+    (*base)=now;
+    (*top)=now;
+    while(n/2)
+    {
+        now=(InnNode*)malloc(sizeof(InnNode));
+        now->data=(n%2);
+        n=n/2;
+        now->next=(*top);
+        (*top)=now;
+    }
+    if(n==1) //当n==1时，将最后一个数据压入栈中
+    {
+        now=(InnNode*)malloc(sizeof(InnNode));
+        now->data=1;
+        now->next=(*top);
+        (*top)=now;
+    }
+}
+
+void PullInn(Inn *base,Inn *top,int n)
+{
+    InnNode *p=(*top);
+    while(p!=(*base)->next)
+    {
+        printf("%d",p->data); //依次输出栈中数据
+        p=p->next;
+    }
+
+}
+
+void FreeInn(Inn *base,Inn *top)
+{
+    while((*top)!=(*base)->next)
+    {
+        InnNode *p=(*top);
+        (*top)=(*top)->next;
+        free(p);
+    }
+
+}
