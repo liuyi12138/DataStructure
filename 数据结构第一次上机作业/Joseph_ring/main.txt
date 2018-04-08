@@ -7,25 +7,25 @@ int main()
     printf("please enter the first key!  ");
     int key,i;
     scanf("%d",&key);
-    int ring[N]; //´´½¨Ë³Ğò±í
+    int ring[N]; //åˆ›å»ºé¡ºåºè¡¨
     for (i=0;i<N;++i)
     {
         printf("please enter the %d perple's password!  ",i+1);
         scanf("%d",&ring[i]);
     }
-    //¶ÁÈëÃ¿¸öÈËµÄÃÜÂë²¢´æÈëË³Ğò±íÖĞ
+    //è¯»å…¥æ¯ä¸ªäººçš„å¯†ç å¹¶å­˜å…¥é¡ºåºè¡¨ä¸­
 
-    int m=0,k=0,count=1; //¶¨ÒåÒÑ³öÁĞµÄÈËÊı,ÏÖÔÚĞè±¨ÊıµÄÈË,ÏÖÔÚµÄ±¨Êı
+    int m=0,k=0,count=1; //å®šä¹‰å·²å‡ºåˆ—çš„äººæ•°,ç°åœ¨éœ€æŠ¥æ•°çš„äºº,ç°åœ¨çš„æŠ¥æ•°
     while(m<N)
     {
         while(1)
         {
             k=k%N;
-            if(ring[k]>0) //ÅĞ¶Ï¸ÃÈËÊÇ·ñÒÑ³öÁĞ
+            if(ring[k]>0) //åˆ¤æ–­è¯¥äººæ˜¯å¦å·²å‡ºåˆ—
             {
                 if(count == key)
                 {
-                    printf("%d  ",k+1); //Êä³ö³öÁĞÕßµÄĞòºÅ
+                    printf("%d  ",k+1); //è¾“å‡ºå‡ºåˆ—è€…çš„åºå·
                     key = ring[k];
                     ring[k] = -1;
                     count=1;
@@ -46,9 +46,3 @@ int main()
     }
     return 1;
 }
-
-
-
-
-
-

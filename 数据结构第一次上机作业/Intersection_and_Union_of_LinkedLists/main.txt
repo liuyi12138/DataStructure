@@ -14,20 +14,20 @@ int main()
 {
     int n1,n2;
     printf("Now,we will create LinkedList A! please enter the number of LinkedNode you want in A   ");
-    scanf("%d",&n1); //ÊäÈëÁ´±íAÖĞ½ÚµãµÄ¸öÊı
+    scanf("%d",&n1); //è¾“å…¥é“¾è¡¨Aä¸­èŠ‚ç‚¹çš„ä¸ªæ•°
     LinkedList *Ahead = NULL;
     printf("please enter the numbers From small to large!\n");
-    CreateLinkedList(&Ahead, n1); //´´½¨Á´±íA
+    CreateLinkedList(&Ahead, n1); //åˆ›å»ºé“¾è¡¨A
     printf("Now,we will create LinkedList B! please enter the number of LinkedNode you want in B   ");
-    scanf("%d",&n2); //ÊäÈëÁ´±íBÖĞ½ÚµãµÄ¸öÊı
+    scanf("%d",&n2); //è¾“å…¥é“¾è¡¨Bä¸­èŠ‚ç‚¹çš„ä¸ªæ•°
     LinkedList *Bhead = NULL;
     printf("please enter the numbers From small to large!\n");
-    CreateLinkedList(&Bhead, n2); //´´½¨Á´±íB
-    LinkedList *L3 = NULL; //¶¨ÒåĞÂÁ´±íL3ÎªABÁ½Á´±íµÄ½»¼¯
-    LinkedList *L4 = NULL; //¶¨ÒåĞÂÁ´±íL4ÎªABÁ½Á´±íµÄ²¢¼¯
+    CreateLinkedList(&Bhead, n2); //åˆ›å»ºé“¾è¡¨B
+    LinkedList *L3 = NULL; //å®šä¹‰æ–°é“¾è¡¨L3ä¸ºABä¸¤é“¾è¡¨çš„äº¤é›†
+    LinkedList *L4 = NULL; //å®šä¹‰æ–°é“¾è¡¨L4ä¸ºABä¸¤é“¾è¡¨çš„å¹¶é›†
     printf("A and B have been created now,so we will get the intersection and union of them \n");
-    GetIntersection(&Ahead,&Bhead,&L3); //´´½¨L3²¢Êä³öÆäÖĞµÄÔªËØ
-    GetUnion(&Ahead,&Bhead,&L4); //´´½¨L4²¢Êä³öÆäÖĞµÄÔªËØ
+    GetIntersection(&Ahead,&Bhead,&L3); //åˆ›å»ºL3å¹¶è¾“å‡ºå…¶ä¸­çš„å…ƒç´ 
+    GetUnion(&Ahead,&Bhead,&L4); //åˆ›å»ºL4å¹¶è¾“å‡ºå…¶ä¸­çš„å…ƒç´ 
     FreeLink(&Ahead);
     FreeLink(&Bhead);
     FreeLink(&L3);
@@ -37,7 +37,7 @@ int main()
 }
 
 
-void CreateLinkedList(LinkedList *L, int n) //´´½¨ĞÂÁ´±í
+void CreateLinkedList(LinkedList *L, int n) //åˆ›å»ºæ–°é“¾è¡¨
 {
 
     LinkedNode *now,*p;
@@ -59,7 +59,7 @@ void CreateLinkedList(LinkedList *L, int n) //´´½¨ĞÂÁ´±í
     return ;
 }
 
-void GetIntersection(LinkedList *L1,LinkedList *L2,LinkedList *L3) //µÃµ½Á½Á´±íµÄ½»¼¯²¢½«Êı¾İ´æÈëĞÂÁ´±íÖĞ
+void GetIntersection(LinkedList *L1,LinkedList *L2,LinkedList *L3) //å¾—åˆ°ä¸¤é“¾è¡¨çš„äº¤é›†å¹¶å°†æ•°æ®å­˜å…¥æ–°é“¾è¡¨ä¸­
 {
     LinkedNode *p = (*L1);
     LinkedNode *q = (*L2);
@@ -103,7 +103,7 @@ void GetIntersection(LinkedList *L1,LinkedList *L2,LinkedList *L3) //µÃµ½Á½Á´±íµ
     return ;
 }
 
-void GetUnion(LinkedList *L1,LinkedList *L2,LinkedList *L4) //µÃµ½Á½Á´±íµÄ²¢¼¯²¢½«Êı¾İ´æÈëĞÂÁ´±íÖĞ
+void GetUnion(LinkedList *L1,LinkedList *L2,LinkedList *L4) //å¾—åˆ°ä¸¤é“¾è¡¨çš„å¹¶é›†å¹¶å°†æ•°æ®å­˜å…¥æ–°é“¾è¡¨ä¸­
 {
     LinkedNode *p = (*L1);
     LinkedNode *q = (*L2);

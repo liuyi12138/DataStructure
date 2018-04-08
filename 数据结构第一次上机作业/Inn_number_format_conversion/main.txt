@@ -5,9 +5,9 @@ typedef struct Node{
     struct Node *next;
 }InnNode,*Inn;
 
-void CreatInn(Inn *base,Inn *top,int n);  //¹¹½¨Ò»¸öÕ»
-void PullInn(Inn *base,Inn *top,int n);  //Êä³öÕ»ÖÐµÄÊý¾Ý
-void FreeInn(Inn *base,Inn *top); //ÊÍ·ÅÕ»µÄ¿Õ¼ä
+void CreatInn(Inn *base,Inn *top,int n);  //æž„å»ºä¸€ä¸ªæ ˆ
+void PullInn(Inn *base,Inn *top,int n);  //è¾“å‡ºæ ˆä¸­çš„æ•°æ®
+void FreeInn(Inn *base,Inn *top); //é‡Šæ”¾æ ˆçš„ç©ºé—´
 
 int main()
 {
@@ -22,11 +22,11 @@ int main()
     return 1;
 }
 
-void CreatInn(Inn *base,Inn *top,int n) //Í¨¹ý¹¹½¨Ò»ÖÖ·´ÏòÁ´±íÀ´ÊµÏÖÕ»
+void CreatInn(Inn *base,Inn *top,int n) //é€šè¿‡æž„å»ºä¸€ç§åå‘é“¾è¡¨æ¥å®žçŽ°æ ˆ
 {
     InnNode *now;
-    now=(InnNode*)malloc(sizeof(InnNode)); //ÎªÐÂµÄ½ÚµãÉêÇë¿Õ¼ä
-    now->data=n%2; //ÎªÐÂ½Úµã¸³Öµ
+    now=(InnNode*)malloc(sizeof(InnNode)); //ä¸ºæ–°çš„èŠ‚ç‚¹ç”³è¯·ç©ºé—´
+    now->data=n%2; //ä¸ºæ–°èŠ‚ç‚¹èµ‹å€¼
     n=n/2;
     (*base)=now;
     (*top)=now;
@@ -38,7 +38,7 @@ void CreatInn(Inn *base,Inn *top,int n) //Í¨¹ý¹¹½¨Ò»ÖÖ·´ÏòÁ´±íÀ´ÊµÏÖÕ»
         now->next=(*top);
         (*top)=now;
     }
-    if(n==1) //µ±n==1Ê±£¬½«×îºóÒ»¸öÊý¾ÝÑ¹ÈëÕ»ÖÐ
+    if(n==1) //å½“n==1æ—¶ï¼Œå°†æœ€åŽä¸€ä¸ªæ•°æ®åŽ‹å…¥æ ˆä¸­
     {
         now=(InnNode*)malloc(sizeof(InnNode));
         now->data=1;
@@ -52,7 +52,7 @@ void PullInn(Inn *base,Inn *top,int n)
     InnNode *p=(*top);
     while(p!=(*base)->next)
     {
-        printf("%d",p->data); //ÒÀ´ÎÊä³öÕ»ÖÐÊý¾Ý
+        printf("%d",p->data); //ä¾æ¬¡è¾“å‡ºæ ˆä¸­æ•°æ®
         p=p->next;
     }
 
